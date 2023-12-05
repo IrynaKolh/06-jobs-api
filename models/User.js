@@ -1,4 +1,5 @@
 const moggoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new moggoose.Schema({
   name: {
@@ -29,6 +30,11 @@ const UserSchema = new moggoose.Schema({
     type: Boolean,
     default: false,
   },
+});
+
+UserSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 module.exports = moggoose.model("User", UserSchema);
