@@ -6,6 +6,7 @@ const app = express();
 const connectDb = require("./db/connect");
 const productsRouter = require("./routes/products");
 const authRouter = require("./routes/auth");
+const authMiddleware = require("./middleware/authentication");
 
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/products", productsRouter);
+app.use("/api/v1/products", authMiddleware, productsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
