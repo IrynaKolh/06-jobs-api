@@ -1,3 +1,7 @@
+const Product = require("../models/Product");
+const { StatusCodes } = require("http-status-codes");
+const { BadRequestError, NotFoundError } = require("../errors");
+
 const getAllProducts = async (req, res) => {
   res.send("Get all products");
 };
@@ -7,7 +11,9 @@ const getProductById = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  res.send("Product has been successfully created");
+  req.body.createdBy = req.user.userId;
+  const product = await Product.create({ ...req.body });
+  res.status(StatusCodes.CREATED).json({ product });
 };
 
 const updateProduct = async (req, res) => {
