@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "db5266d7-370c-45cd-9b5b-3e64a9d31f7a",
+		"name": "Bakary Trading",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22535530"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Iryna\",\r\n    \"email\": \"ira@gmail.com\",\r\n    \"password\": \"Secret5+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/auth/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ira@gmail.com\",\r\n    \"password\": \"Secret5+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/auth/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTZmYjdhNTA4Mjc0NTRjY2NmNmFlNWMiLCJuYW1lIjoiSXJ5bmEiLCJpYXQiOjE3MDE4MjAzMjYsImV4cCI6MTcwNDQxMjMyNn0.QzGgBL0kRThqklpO_RXIAtEHC45-_9Uc85Xs3Dq_DZ0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"name\": \"Pumpkin cheescake\",\r\n    \"price\": 25,\r\n    \"description\": \"Contains: chocolate crackers, unsalted butter, cream cheese, heavy whipping cream, pumpkin puree, sugar, corn starch, eggs, walnuts, zest of orange.\",\r\n    \"type\": \"Cakes\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTZmYjdhNTA4Mjc0NTRjY2NmNmFlNWMiLCJuYW1lIjoiSXJ5bmEiLCJpYXQiOjE3MDIxNzI1NDYsImV4cCI6MTcwNDc2NDU0Nn0.cNd0uno5jtlrpIOeu9ABhdBlLZOLC7yoj_W84Kw8QzA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/products",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 1 Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/products/65751ae81638c64310418d8f",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"products",
+						"65751ae81638c64310418d8f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Honey cake with raspberriese\",    \r\n    \"price\": 30,\r\n    \"description\": \"Contains: honey, sugar, unsalted butter, eggs, baking soda, all purpose flour, milk, corn starch, sour cream, heavy whipping cream, raspberry puree, lemon juice, powered sugar, mascarpone.\",\r\n    \"type\": \"Cakes\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/products/657662831803c064c8b981e5",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"products",
+						"657662831803c064c8b981e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/products/656fc49c7ab8101cfcea122f",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"products",
+						"656fc49c7ab8101cfcea122f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Bakary Trading
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://ikol-bakary-trading.onrender.com
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  name: Iryna
+                  email: ira@gmail.com
+                  password: Secret5+
+            example:
+              name: Iryna
+              email: ira@gmail.com
+              password: Secret5+
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - example:
+                  email: ira@gmail.com
+                  password: Secret5+
+            example:
+              email: ira@gmail.com
+              password: Secret5+
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /products:
+    post:
+      tags:
+      - Products
+      summary: Create Product
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateProductRequest'
+              - example:
+                  name: Pumpkin cheescake
+                  price: 25
+                  description: 'Contains: chocolate crackers, unsalted butter, cream cheese, heavy whipping cream, pumpkin puree, sugar, corn starch, eggs, walnuts, zest of orange.'
+                  type: Cakes
+            example:
+              name: Pumpkin cheescake
+              price: 25
+              description: 'Contains: chocolate crackers, unsalted butter, cream cheese, heavy whipping cream, pumpkin puree, sugar, corn starch, eggs, walnuts, zest of orange.'
+              type: Cakes
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Products
+      summary: Get All Products
+      operationId: GetAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products/{id}:
+    get:
+      tags:
+      - Products
+      summary: Get 1 Product
+      operationId: Get1Product
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Products
+      summary: Update Product
+      operationId: UpdateProduct
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateProductRequest'
+              - example:
+                  name: Honey cake with raspberriese
+                  price: 30
+                  description: 'Contains: honey, sugar, unsalted butter, eggs, baking soda, all purpose flour, milk, corn starch, sour cream, heavy whipping cream, raspberry puree, lemon juice, powered sugar, mascarpone.'
+                  type: Cakes
+            example:
+              name: Honey cake with raspberriese
+              price: 30
+              description: 'Contains: honey, sugar, unsalted butter, eggs, baking soda, all purpose flour, milk, corn starch, sour cream, heavy whipping cream, raspberry puree, lemon juice, powered sugar, mascarpone.'
+              type: Cakes
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Products
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Iryna
+        email: ira@gmail.com
+        password: Secret5+
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: ira@gmail.com
+        password: Secret5+
+    CreateProductRequest:
+      title: CreateProductRequest
+      required:
+      - name
+      - price
+      - description
+      - type
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        type:
+          type: string
+      example:
+        name: Pumpkin cheescake
+        price: 25
+        description: 'Contains: chocolate crackers, unsalted butter, cream cheese, heavy whipping cream, pumpkin puree, sugar, corn starch, eggs, walnuts, zest of orange.'
+        type: Cakes
+    UpdateProductRequest:
+      title: UpdateProductRequest
+      required:
+      - name
+      - price
+      - description
+      - type
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        type:
+          type: string
+      example:
+        name: Honey cake with raspberriese
+        price: 30
+        description: 'Contains: honey, sugar, unsalted butter, eggs, baking soda, all purpose flour, milk, corn starch, sour cream, heavy whipping cream, raspberry puree, lemon juice, powered sugar, mascarpone.'
+        type: Cakes
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: Products
+  description: ''
