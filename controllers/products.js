@@ -3,11 +3,25 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
 const getAllProducts = async (req, res) => {
-  res.send("Get all products");
+  const products = await Product.find({ createdBy: req.user.userId }).sort(
+    "createdAt"
+  );
+  res.status(StatusCodes.OK).json({ products, count: products.length });
 };
 
 const getProductById = async (req, res) => {
-  res.send("Get product by id");
+  const {
+    user: { userId },
+    params: { id: productId },
+  } = req;
+  const product = await Product.findOne({
+    _id: productId,
+    createdBy: userId,
+  });
+  if (!product) {
+    throw new NotFoundError(`No product with id: ${productId}`);
+  }
+  res.status(StatusCodes.OK).json({ product });
 };
 
 const createProduct = async (req, res) => {
@@ -17,11 +31,43 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  res.send("Product has been successfully updated");
+  const {
+    body: { name, price, description, type },
+    user: { userId },
+    params: { id: productId },
+  } = req;
+
+  if (!name || !price || !description || !type) {
+    throw new BadRequestError("Please provide all values");
+  }
+
+  const product = await Product.findOneAndUpdate(
+    { _id: productId, createdBy: userId },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!product) {
+    throw new NotFoundError(`No product with id: ${productId}`);
+  }
+  res.status(StatusCodes.OK).json({ product });
+  // res.send("Product has been successfully updated");
 };
 
 const deleteProduct = async (req, res) => {
-  res.send("Product has been successfully deleted");
+   const {
+     user: { userId },
+     params: { id: productId },
+   } = req;
+
+   const product = await Product.findOneAndRemove({
+     _id: productId,
+     createdBy: userId,
+   });
+   if (!product) {
+     throw new NotFoundError(`No product with id: ${productId}`);
+   }
+   res.status(StatusCodes.OK).send("Product has been successfully deleted");
 };
 
 module.exports = {

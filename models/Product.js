@@ -31,10 +31,10 @@ const ProductSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: [
-        "Cake",
+        "Cakes",
         "Cookies",
         "Pies",
-        "Bread",
+        "Breads",
         "Cupcakes",
         "Waffles",
         "Others",
