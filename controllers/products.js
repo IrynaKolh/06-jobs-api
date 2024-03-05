@@ -67,7 +67,9 @@ const deleteProduct = async (req, res) => {
    if (!product) {
      throw new NotFoundError(`No product with id: ${productId}`);
    }
-   res.status(StatusCodes.OK).send("Product has been successfully deleted");
+   res
+     .status(StatusCodes.OK)
+     .json({ msg: "Product has been successfully deleted" });
 };
 
 module.exports = {

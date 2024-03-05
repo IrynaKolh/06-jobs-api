@@ -37,9 +37,10 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 // routes
-app.get("/", (req, res) => {
-  res.send("products api");
-});
+// app.get("/", (req, res) => {
+//   res.send("products api");
+// });
+app.use(express.static("public"));
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", authMiddleware, productsRouter);

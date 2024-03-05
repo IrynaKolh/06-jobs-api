@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products List</title>
+  </head>
+
+  <body>
+    <h1>Products List</h1>
+    <hr />
+    <p id="message"></p>
+    <hr />
+    <div id="logon-register" style="display:none;">
+      <button type="button" id="logon">logon</button>
+      <button type="button" id="register">register</button>
+    </div>
+    <div id="logon-div" style="display:none;">
+      <form>
+        <div>
+          <label for="email">email:</label>
+          <input type="email" id="email" />
+        </div>
+        <div>
+          <label for="password">password:</label>
+          <input type="password" id="password" />
+        </div>
+        <button type="button" id="logon-button">logon</button>
+        <button type="button" id="logon-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="register-div" style="display:none;">
+      <form>
+        <div>
+          <label for="name">name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="email1">email:</label>
+          <input type="email" id="email1" />
+        </div>
+        <div>
+          <label for="password1">password:</label>
+          <input type="password" id="password1" />
+        </div>
+        <div>
+          <label for="password2">verify password:</label>
+          <input type="password" id="password2" />
+        </div>
+        <button type="button" id="register-button">register</button>
+        <button type="button" id="register-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="product" style="display:none;">
+      <p id="product-message"></p>
+      <table id="product-table">
+        <tr id="product-table-header">
+          <th>Name</th>         
+          <th>Description</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th colspan="2"></th>
+        </tr>
+      </table>
+      <button type="button" id="add-product">add product</button>
+      <button type="button" id="logoff">log off</button>
+    </div>
+    <div id="edit-product" style="display:none;">
+      <form>
+        <div>
+          <label for="productName">name:</label>
+          <input type="text" id="productName" />
+        </div>
+        <div>
+          <label for="description">description:</label>
+          <input type="text" id="description" />
+        </div>
+        <div>
+          <label for="type">type:</label>
+          <select id="type">
+            <option value="Cookies">Cookies</option>
+            <option value="Cakes">Cakes</option>
+            <option value="Pies">Pies</option>
+            <option value="Breads">Breads</option>
+            <option value="Cupcakes">Cupcakes</option>
+            <option value="Waffles">Waffles</option>
+            <option value="Others">Others</option>         
+          </select>
+        </div>
+         <div>
+          <label for="price">price:</label>
+          <input type="text" id="price" />
+        </div>
+        <button type="button" id="adding-product">add</button>
+        <button type="button" id="edit-cancel">cancel</button>
+      </form>
+    </div>
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>
